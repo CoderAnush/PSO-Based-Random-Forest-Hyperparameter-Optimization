@@ -163,8 +163,8 @@ export function mount(root, meta) {
     conv.set("band", { color: COLORS.pso, band: [], label: "swarm min–max" });
     conv.set("mean", { color: COLORS.ink2, dash: "5 4", points: [], label: "swarm mean", width: 1.5 });
     conv.set("gbest", { color: COLORS.pso, points: [], step: true, dots: true, label: "gbest", width: 2.5 });
+    if (params.race) race.set("random_search", { color: COLORS.random_search, points: [], step: true, label: LABEL.random_search, head: true, width: 2.5, dash: "7 4" });
     race.set("pso", { color: COLORS.pso, points: [], step: true, label: LABEL.pso, head: true, width: 2.5 });
-    if (params.race) race.set("random_search", { color: COLORS.random_search, points: [], step: true, label: LABEL.random_search, head: true, width: 2.5 });
     race.o.xMax = budget; conv.o.xMax = params.max_iter;
     raceCard.querySelector(".rsrow").classList.toggle("hidden", !params.race);
     drawVault(false); overlay.classList.add("hidden");
@@ -247,7 +247,7 @@ export function mount(root, meta) {
         h("td", { class: "num", style: { fontWeight: r.test.accuracy === best ? 700 : 400 } }, fmt.acc(r.test.accuracy)),
         h("td", { class: "num" }, fmt.acc(r.test.f1_macro)), h("td", { class: "num" }, r.n_evaluations)); })));
     const bars = h("div");
-    resultBox.replaceChildren(h("h3", {}, "After the loop: the test fold is opened"), table, bars,
+    resultBox.replaceChildren(h("h3", {}, "After the loop: the test fold is opened"), h("div", { class: "table-scroll" }, table), bars,
       h("div", { class: "insight", style: { marginTop: "10px" } },
         h("b", {}, "Reading this honestly. "), `On this fold one test sample is worth ${one.toFixed(3)} accuracy, so smaller gaps are noise. `,
         "Validation accuracy is the best of many noisy estimates, so it is optimistically biased; only the test column is performance. ",

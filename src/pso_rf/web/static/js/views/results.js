@@ -49,7 +49,7 @@ export function mount(root, meta) {
         h("div", { class: "s", style: { marginTop: "4px" } }, `PSO is ${verdict} the default (Δ ${fmt.delta(d)}; W/T/L ${pso.wins}/${pso.ties}/${pso.losses}); vs random search ${pso.wins_vs_rs}/${pso.ties_vs_rs}/${pso.losses_vs_rs}.`),
         h("div", { class: "s" }, `Unique RF fits: PSO ${pso.n_unique_fits_mean.toFixed(0)} vs random ${rs.n_unique_fits_mean.toFixed(0)} per fold.`));
     });
-    return h("div", { class: "grid" }, h("div", { class: "kpis", style: { gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))" } }, ...items),
+    return h("div", { class: "grid" }, h("div", { class: "kpis", style: { gridTemplateColumns: "repeat(auto-fit, minmax(min(300px, 100%), 1fr))" } }, ...items),
       h("div", { class: "insight" }, h("b", {}, "How to read this. "), "Only held-out test accuracy is performance. Validation accuracy is the best of many noisy estimates, so it is optimistically biased. With 5 paired folds no significance test is possible (the smallest two-sided Wilcoxon p-value is 0.0625), so the results are descriptive. A difference smaller than one test sample is noise."));
   }
 
